@@ -110,16 +110,12 @@ class MainActivity: FlutterActivity() {
                             appInfo.packageName.toLowerCase().contains(keyword)
                         }
 
-                        // Verifica se as notificações estão habilitadas para o app
-                        val areNotificationsEnabled = pm.areNotificationsEnabledForPackage(appInfo.packageName, appInfo.uid)
-
                         // Inclui o app se:
                         // 1. Não é um app do sistema OU
                         // 2. É um app do sistema atualizado OU
                         // 3. É um app relevante E
-                        // 4. Não está na lista de pacotes ignorados E
-                        // 5. Tem notificações habilitadas
-                        (!isSystemApp || isUpdatedSystemApp || isRelevant) && !shouldIgnore && areNotificationsEnabled
+                        // 4. Não está na lista de pacotes ignorados
+                        (!isSystemApp || isUpdatedSystemApp || isRelevant) && !shouldIgnore
                     } catch (e: Exception) {
                         false
                     }
